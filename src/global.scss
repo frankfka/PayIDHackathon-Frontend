@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import '~bootstrap';
+@import '~bootstrap-vue';
+
+// Override bootstrap bottom margin
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// Declare color scheme
+$color-primary: #F57C00;
+$color-primary-dark: #E65100;
+$color-text: #212121;
+$color-text-light: #616161;
+$color-text-white: #FFF;
+
+// Global styles
+body {
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $color-text;
+}
+// Override font sizes for small screens, using Bootstrap's base font size variable
+body, p {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base * 0.9 !important;
+  }
+}
+h1 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h1-font-size * 0.8 !important;
+  }
+}
+h2 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h2-font-size * 0.8 !important;
+  }
+}
+h3 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h3-font-size * 0.8 !important;
+  }
+}
+h4 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h4-font-size * 0.8 !important;
+  }
+}
+h5 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h5-font-size * 0.8 !important;
+  }
+}
+h6 {
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $h6-font-size * 0.9 !important;
+  }
+}
+
+.primary-color {
+  color: $color-primary;
+}
+.light-text-color {
+  color: $color-text-light
+}
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  outline: none;
+}
