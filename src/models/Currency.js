@@ -1,11 +1,11 @@
 // Supported currencies
 const BTC = {
   name: 'Bitcoin',
-  symbol: 'BTC',
+  code: 'BTC',
 };
 const XRP = {
   name: 'Ripple',
-  symbol: 'XRP',
+  code: 'XRP',
 };
 
 // Currency "Enum"
