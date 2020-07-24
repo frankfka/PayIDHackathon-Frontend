@@ -5,14 +5,19 @@
     :type="type"
     :href="href"
     :to="to"
+    :disabled="disabled"
   >
     {{ label }}
+    <BaseSpinner small v-if="loading"/>
   </BButton>
 </template>
 
 <script>
+import BaseSpinner from './BaseSpinner.vue';
+
 export default {
   name: 'BaseButton',
+  components: { BaseSpinner },
   props: {
     label: String,
     size: {
@@ -20,6 +25,14 @@ export default {
       default: '',
     },
     outlined: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },

@@ -1,22 +1,29 @@
 <template>
 <div class="nav-bar">
   <BNavbar>
-    <BNavbarBrand to="/">PayID</BNavbarBrand>
+    <BNavbarBrand :to="homePath">PayID</BNavbarBrand>
     <BNavbarNav class="ml-auto">
-      <RouterLink to="/create">
-        <BaseButton label="Create a Page"/>
-      </RouterLink>
+      <BaseButton label="Create a Page" :to="createPath"/>
     </BNavbarNav>
   </BNavbar>
 </div>
 </template>
 
 <script>
+import { CREATE_PATH, HOME_PATH } from '../../constants/routes';
 import BaseButton from './BaseButton.vue';
 
 export default {
   name: 'NavBar',
   components: { BaseButton },
+  computed: {
+    createPath() {
+      return CREATE_PATH;
+    },
+    homePath() {
+      return HOME_PATH;
+    },
+  },
 };
 </script>
 

@@ -2,10 +2,6 @@ import axios from 'axios';
 import * as endpoints from '../constants/api';
 
 export async function createPage(pageData) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  // Stubbed testing data
-  return 'TestID3231212';
-  // eslint-disable-next-line no-unreachable
   const requestInfo = {
     payId: pageData.payId,
     name: pageData.name,
@@ -15,6 +11,12 @@ export async function createPage(pageData) {
       currencyCode: pageData.requestedAmountCurrency.code,
     } : null,
   };
+  console.log('Creating page');
+  console.log(requestInfo);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // Stubbed testing data
+  return 'TestID3231212';
+  // eslint-disable-next-line no-unreachable
   const res = await axios.post(endpoints.CREATE_ENDPOINT, requestInfo);
   return res.data.id;
 }

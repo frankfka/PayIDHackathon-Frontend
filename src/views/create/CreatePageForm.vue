@@ -30,16 +30,21 @@
     </BRow>
   </BFormGroup>
   <!--Submit Button-->
-  <BaseButton label="Submit" type="submit"/>
+  <BaseButton
+    :label="isSubmitting ? 'Creating' : 'Create'"
+    type="submit"
+    :disabled="isSubmitting"
+    :loading="isSubmitting"
+  />
 </BForm>
 </template>
 
 <script>
-import FormTextInput from '../../components/FormTextInput.vue';
+import FormTextInput from '../components/FormTextInput.vue';
 import * as inputUtils from './CreatePageInputUtils';
-import BaseButton from '../../components/BaseButton.vue';
-import FormSwitchInput from '../../components/FormSwitchInput.vue';
-import FormSelectInput from '../../components/FormSelectInput.vue';
+import BaseButton from '../components/BaseButton.vue';
+import FormSwitchInput from '../components/FormSwitchInput.vue';
+import FormSelectInput from '../components/FormSelectInput.vue';
 
 export default {
   name: 'CreatePageForm',
@@ -55,6 +60,9 @@ export default {
       requestedAmountValue: inputUtils.getRequestedAmountValueInputInitialState(),
       requestedAmountCurrency: inputUtils.getRequestedAmountCurrencyInputInitialState(),
     };
+  },
+  props: {
+    isSubmitting: Boolean,
   },
   methods: {
     onSubmit(e) {

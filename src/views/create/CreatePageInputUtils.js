@@ -1,4 +1,4 @@
-import { SUPPORTED_CURRENCIES } from '../../../models/Currency';
+import { SUPPORTED_CURRENCIES } from '../../models/Currency';
 
 // PayID
 export function getPayIDInputInitialState() {
@@ -72,7 +72,7 @@ export function getRequestedAmountCurrencyInputInitialState() {
       { value: null, text: 'Currency' },
       // Create options from all supported currencies
       ...SUPPORTED_CURRENCIES.map((currency) => ({
-        text: currency.symbol,
+        text: currency.code,
         value: currency,
       })),
     ],

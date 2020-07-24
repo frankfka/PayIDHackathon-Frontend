@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home-page">
     <SectionWrapper>
       <BRow no-gutters>
         <BCol>
@@ -7,9 +7,7 @@
           <h5>
             Easily share your cryptocurrency payment information with a unique payment profile.
           </h5>
-          <RouterLink to="/create">
-            <BaseButton label="Create Yours"/>
-          </RouterLink>
+          <BaseButton label="Create Yours" :to="createPath"/>
         </BCol>
       </BRow>
     </SectionWrapper>
@@ -18,13 +16,19 @@
 
 <script>
 import SectionWrapper from '../components/SectionWrapper.vue';
+import { CREATE_PATH } from '../../constants/routes';
 import BaseButton from '../components/BaseButton.vue';
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     BaseButton,
     SectionWrapper,
+  },
+  computed: {
+    createPath() {
+      return CREATE_PATH;
+    },
   },
 };
 </script>
