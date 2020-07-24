@@ -11,6 +11,7 @@
       :state="isValid"
       :type="type"
       v-model="localValue"
+      :disabled="disabled"
     />
   </BFormGroup>
 </template>
@@ -20,7 +21,6 @@ export default {
   name: 'FormTextInput',
   props: {
     value: {
-      type: String,
       required: true,
     },
     label: {
@@ -50,6 +50,10 @@ export default {
     invalidFeedback: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

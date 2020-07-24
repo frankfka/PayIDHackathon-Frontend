@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <CreatePageForm/>
+    <h1>Create a Payment Page</h1>
+    <CreatePageForm @submit="onFormSubmit"/>
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
       isSubmitting: false,
       submitError: null,
     };
+  },
+  methods: {
+    onFormSubmit(data) {
+      // TODO: Call service
+      console.log(data);
+    },
   },
 };
 </script>
