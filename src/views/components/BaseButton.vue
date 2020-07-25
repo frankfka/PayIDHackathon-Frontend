@@ -8,6 +8,7 @@
     :disabled="disabled"
   >
     {{ label }}
+    <!--Loading animation-->
     <BaseSpinner small v-if="loading"/>
   </BButton>
 </template>
@@ -45,7 +46,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  $border-style: 1px solid;
+  $border-style: 2px solid;
 
   // Filled
   .base-button-fill, .base-button-fill:hover, .base-button-fill:active, .base-button-fill:visited {
@@ -55,7 +56,7 @@ export default {
   }
 
   .base-button-fill {
-    color: $color-text-white !important;
+    color: $color-text-on-primary !important;
   }
 
   .base-button-fill:hover {
@@ -75,6 +76,6 @@ export default {
 
   .base-button-outline:hover {
     background-color: $color-primary-dark !important;
-    color: $color-text-white !important;
+    color: $color-text-on-primary !important;
   }
 </style>

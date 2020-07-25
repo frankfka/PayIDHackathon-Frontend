@@ -1,7 +1,7 @@
 <template>
 <div class="nav-bar">
   <BNavbar>
-    <BNavbarBrand :to="homePath">PayID</BNavbarBrand>
+    <BNavbarBrand :to="homePath" class="brand-link">PayID</BNavbarBrand>
     <BNavbarNav class="ml-auto">
       <BaseButton label="Create a Page" :to="createPath"/>
     </BNavbarNav>
@@ -28,7 +28,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.brand-link {
+  color: $color-text !important;
+}
 .nav-bar {
-  border-bottom: 1px solid gray;
+  background: $color-background-dark;
 }
 </style>

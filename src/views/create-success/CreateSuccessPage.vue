@@ -5,7 +5,8 @@
     <!--Badges-->
     <div class="create-success-badges-section">
       <h3>Share with Badges</h3>
-      <p>We use <a href="https://shields.io/">shields.io</a> to create shareable badges.</p>
+      <p>We use <a href="https://shields.io/" target="_blank">shields.io</a>
+        to create shareable badges.</p>
       <BRow no-gutters>
         <!--TODO-->
         <a href="#">

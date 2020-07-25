@@ -6,6 +6,7 @@
 </template>
 
 <script>
+// TODO: Cleanup, attributions to undraw, badges page
 import Vue from 'vue';
 import { BootstrapVue } from 'bootstrap-vue';
 
@@ -21,6 +22,7 @@ export default {
 
 <style lang="scss">
 #app {
+  background-color: $color-background;
   min-height: 100vh;
 }
 </style>
