@@ -12,6 +12,7 @@
       :type="type"
       v-model="localValue"
       :disabled="disabled"
+      :readonly="readonly"
     />
   </BFormGroup>
 </template>
@@ -52,6 +53,10 @@ export default {
       default: '',
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
       type: Boolean,
       default: false,
     },

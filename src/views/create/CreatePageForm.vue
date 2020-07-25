@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import FormTextInput from '../components/FormTextInput.vue';
+import FormTextInput from '../components/form/FormTextInput.vue';
 import * as inputUtils from './CreatePageInputUtils';
 import BaseButton from '../components/BaseButton.vue';
-import FormSwitchInput from '../components/FormSwitchInput.vue';
-import FormSelectInput from '../components/FormSelectInput.vue';
+import FormSwitchInput from '../components/form/FormSwitchInput.vue';
+import FormSelectInput from '../components/form/FormSelectInput.vue';
 
 export default {
   name: 'CreatePageForm',

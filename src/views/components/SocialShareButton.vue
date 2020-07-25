@@ -15,6 +15,7 @@
 
 <script>
 // TODO: Need to finish
+// TODO: Copy badge
 import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VueSocialSharing from 'vue-social-sharing';
