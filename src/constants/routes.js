@@ -10,5 +10,6 @@ export const PAGE_PATH_BASE = '/payment-page';
 export const PAGE_PATH_WITH_MATCH = `${PAGE_PATH_BASE}/:${PAGE_ID_KEY}`;
 
 export const SUCCESS_PATH_NAME = 'PaymentSuccess';
-export const SUCCESS_PATH_QUERY_KEY = 'id';
+export const SUCCESS_PATH_PAGE_ID_KEY = 'id';
+export const SUCCESS_PATH_PAY_ID_KEY = 'payId';
 export const SUCCESS_PATH = '/create-success';

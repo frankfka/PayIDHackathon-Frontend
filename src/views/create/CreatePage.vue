@@ -26,7 +26,11 @@
 <script>
 import CreatePageForm from './CreatePageForm.vue';
 import { createPage } from '../../services/api';
-import { SUCCESS_PATH_NAME, SUCCESS_PATH_QUERY_KEY } from '../../constants/routes';
+import {
+  SUCCESS_PATH_NAME,
+  SUCCESS_PATH_PAGE_ID_KEY,
+  SUCCESS_PATH_PAY_ID_KEY,
+} from '../../constants/routes';
 import SectionWrapper from '../components/SectionWrapper.vue';
 
 export default {
@@ -50,11 +54,12 @@ export default {
           // Push to success page if creation is successful
           console.log(newPageId);
           this.isSubmitting = false;
-          const routerPushQuery = {};
-          routerPushQuery[SUCCESS_PATH_QUERY_KEY] = newPageId;
+          const routerParams = {};
+          routerParams[SUCCESS_PATH_PAGE_ID_KEY] = newPageId;
+          routerParams[SUCCESS_PATH_PAY_ID_KEY] = data.payId;
           this.$router.push({
             name: SUCCESS_PATH_NAME,
-            query: routerPushQuery,
+            query: routerParams,
           });
         })
         .catch((error) => {

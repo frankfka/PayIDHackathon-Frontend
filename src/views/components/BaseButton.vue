@@ -6,6 +6,7 @@
     :href="href"
     :to="to"
     :disabled="disabled"
+    @click="() => {this.$emit('click')}"
   >
     <div class="d-flex align-content-center align-items-center">
       {{ label }}

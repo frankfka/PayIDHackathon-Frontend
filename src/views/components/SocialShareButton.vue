@@ -1,31 +1,42 @@
 <template>
-<!--TODO: Fill these in-->
 <ShareNetwork
   class="social-share-button"
   :network="network"
   :url="url"
-  title="My Payment Page"
-  description=""
+  title="My PayID Payment Page"
   :style="{backgroundColor: color}"
 >
-  <FontAwesomeIcon :icon="icon" class="social-share-button-brand-icon"/>
-  <span class="social-share-button-label">{{ label }}</span>
+  <FontAwesomeIcon :icon="icon" class="m-2"/>
 </ShareNetwork>
 </template>
 
 <script>
-// TODO: Need to finish
-// TODO: Copy badge
 import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VueSocialSharing from 'vue-social-sharing';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebookF, faTwitter, faRedditAlien, faLine, faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 
 library.add(
-  faFacebookF,
+  faFacebookF, faTwitter, faRedditAlien, faLine, faWhatsapp,
 );
 Vue.use(VueSocialSharing);
+
+function toAttrs(icon, color) {
+  return {
+    icon, color,
+  };
+}
+const NETWORK_TO_ATTRS = {
+  facebook: toAttrs(faFacebookF, '#3b5998'),
+  twitter: toAttrs(faTwitter, '#1DA1F2'),
+  reddit: toAttrs(faRedditAlien, '#FF5700'),
+  line: toAttrs(faLine, '#00b900'),
+  whatsapp: toAttrs(faWhatsapp, '#075E54'),
+};
+export const SUPPORTED_SOCIAL_NETWORKS = Object.keys(NETWORK_TO_ATTRS);
 
 export default {
   name: 'SocialShareButton',
@@ -38,20 +49,16 @@ export default {
       type: String,
       required: true,
     },
-    label: {
-      type: String,
-      default: 'Share',
-    },
   },
   components: {
     FontAwesomeIcon,
   },
   computed: {
     icon() {
-      return faFacebookF;
+      return NETWORK_TO_ATTRS[this.network].icon;
     },
     color() {
-      return '#1877f2';
+      return NETWORK_TO_ATTRS[this.network].color;
     },
   },
 };
@@ -60,14 +67,8 @@ export default {
 <style scoped lang="scss">
 .social-share-button {
   cursor: pointer;
-  border: 1px solid gray;
-  padding: 0.2em;
-}
-.social-share-button-label {
-  color: white;
 }
 .social-share-button-brand-icon {
   color: white;
-  margin-right: 0.5em;
 }
 </style>

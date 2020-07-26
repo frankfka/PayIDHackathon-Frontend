@@ -80,8 +80,8 @@ export default {
     console.log(this.pageId);
     getPage(this.pageId)
       .then((fetchedData) => {
-        this.isLoading = false;
-        this.error = true;
+        // this.isLoading = false;
+        // this.error = false;
         this.pageData = fetchedData;
       })
       .catch((error) => {

@@ -2,7 +2,7 @@
 <div
   class="full-width-centered loading-view"
 >
-  <BaseSpinner class="loadable-content-wrapper-spinner"/>
+  <BaseSpinner/>
 </div>
 </template>
 
@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.loading-view {
+  color: $color-primary;
+}
 </style>
