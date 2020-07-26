@@ -7,9 +7,11 @@
     :to="to"
     :disabled="disabled"
   >
-    {{ label }}
-    <!--Loading animation-->
-    <BaseSpinner small v-if="loading"/>
+    <div class="d-flex align-content-center align-items-center">
+      {{ label }}
+      <!--Loading animation-->
+      <BaseSpinner small v-if="loading" class="ml-2"/>
+    </div>
   </BButton>
 </template>
 
@@ -57,10 +59,10 @@ export default {
 
   .base-button-fill {
     color: $color-text-on-primary !important;
-  }
-
-  .base-button-fill:hover {
-    background-color: $color-primary-dark !important;
+    &:hover {
+      border: $color-primary-dark $border-style !important;
+      background-color: $color-primary-dark !important;
+    }
   }
 
   // Outline
@@ -72,10 +74,11 @@ export default {
 
   .base-button-outline {
     color: $color-primary !important;
+    &:hover {
+      background-color: $color-primary-dark !important;
+      border: $color-primary-dark $border-style !important;
+      color: $color-text-on-primary !important;
+    }
   }
 
-  .base-button-outline:hover {
-    background-color: $color-primary-dark !important;
-    color: $color-text-on-primary !important;
-  }
 </style>

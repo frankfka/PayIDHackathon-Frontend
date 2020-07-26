@@ -1,13 +1,25 @@
 <template>
   <div class="create-page">
-    <h1>Create a Payment Page</h1>
-    <BAlert variant="danger" dismissible fade v-model="showSubmitError">
-      Something went wrong. Please try again.
-    </BAlert>
-    <CreatePageForm
-      @submit="onFormSubmit"
-      :is-submitting="isSubmitting"
-    />
+    <SectionWrapper>
+      <div class="w-100">
+        <!--Header with title-->
+        <div class="header">
+          <h1>Create a Payment Page</h1>
+          <p class="mt-1">Create a unique payment page with your
+            <a href="https://payid.org/" target="_blank">PayID</a>.</p>
+        </div>
+        <!--Error alert-->
+        <BAlert variant="danger" dismissible fade v-model="showSubmitError" class="my-3">
+          Something went wrong. Please try again.
+        </BAlert>
+        <!--Form-->
+        <CreatePageForm
+          class="my-5"
+          @submit="onFormSubmit"
+          :is-submitting="isSubmitting"
+        />
+      </div>
+    </SectionWrapper>
   </div>
 </template>
 
@@ -15,9 +27,10 @@
 import CreatePageForm from './CreatePageForm.vue';
 import { createPage } from '../../services/api';
 import { SUCCESS_PATH_NAME, SUCCESS_PATH_QUERY_KEY } from '../../constants/routes';
+import SectionWrapper from '../components/SectionWrapper.vue';
 
 export default {
-  components: { CreatePageForm },
+  components: { SectionWrapper, CreatePageForm },
   data() {
     return {
       isSubmitting: false,
@@ -54,3 +67,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.create-page {
+  min-height: $min-page-vh;
+}
+</style>

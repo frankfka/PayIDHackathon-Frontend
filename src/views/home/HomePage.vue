@@ -32,7 +32,7 @@
             <h4 class="section-minor-title">Share Your Link</h4>
             <p>Taking payment for an order? Splitting the bill with a friend? Share your profile
               with whomever. We also hook you up with some nice badges courtesy of
-              <a href="https://shields.io/" target="_blank">shields.io</a></p>
+              <a href="https://shields.io/" target="_blank">shields.io</a>.</p>
           </BCol>
           <BCol>
             <h4 class="section-minor-title">Get Paid Easily</h4>
@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
   .header {
-    min-height: 80vh;
+    min-height: $min-page-vh;
   }
   .header-title {
     font-size: $h1-font-size * 1.2;

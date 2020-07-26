@@ -7,22 +7,30 @@
   <!--Custom Message Input-->
   <FormTextInput v-model="customMessage.value" v-bind="customMessage"/>
   <!--Request Amount Inputs-->
-  <BFormGroup :label="isRequestedAmountEnabled.label">
-    <BRow no-gutters>
+  <BFormGroup
+    :label="isRequestedAmountEnabled.label"
+    :invalid-feedback="requestedAmountValue.invalidFeedback"
+    :state="isRequestedAmountInputGroupValid"
+  >
+    <BRow align-v="center">
       <BCol sm="auto">
         <FormSwitchInput v-model="isRequestedAmountEnabled.value"/>
       </BCol>
       <BCol>
         <FormTextInput
           v-model="requestedAmountValue.value"
-          v-bind="requestedAmountValue"
+          :is-valid="isRequestedAmountValueValid"
+          :placeholder="requestedAmountValue.placeholder"
+          :type="requestedAmountValue.type"
           :disabled="!isRequestedAmountEnabled.value"
+          class="mb-0"
         />
       </BCol>
       <BCol sm="auto">
         <FormSelectInput
           v-model="requestedAmountCurrency.value"
-          v-bind="requestedAmountCurrency"
+          :is-valid="isRequestedAmountCurrencyValid"
+          :options="requestedAmountCurrency.options"
           :disabled="!isRequestedAmountEnabled.value"
           class="col"
         />
@@ -35,6 +43,7 @@
     type="submit"
     :disabled="isSubmitting"
     :loading="isSubmitting"
+    outlined
   />
 </BForm>
 </template>
@@ -60,6 +69,37 @@ export default {
       requestedAmountValue: inputUtils.getRequestedAmountValueInputInitialState(),
       requestedAmountCurrency: inputUtils.getRequestedAmountCurrencyInputInitialState(),
     };
+  },
+  computed: {
+    // For overall input group for requested amount
+    isRequestedAmountInputGroupValid() {
+      if (
+        this.isRequestedAmountEnabled.value
+        && this.requestedAmountValue.isValid != null
+        && this.requestedAmountCurrency.isValid != null
+        && (!this.requestedAmountCurrency.isValid || !this.requestedAmountValue.isValid)
+      ) {
+        // Only show invalid text if we validate AND validation fails
+        return false;
+      }
+      return null;
+    },
+    // For red outline for currency
+    isRequestedAmountCurrencyValid() {
+      if (this.isRequestedAmountEnabled.value) {
+        // Only validate if enabled
+        return this.requestedAmountCurrency.isValid;
+      }
+      return null;
+    },
+    // For red outline for amount
+    isRequestedAmountValueValid() {
+      if (this.isRequestedAmountEnabled.value) {
+        // Only validate if enabled
+        return this.requestedAmountValue.isValid;
+      }
+      return null;
+    },
   },
   props: {
     isSubmitting: Boolean,

@@ -1,0 +1,36 @@
+// Declare color scheme
+$shade-amount: 5%;
+$shade-amount-high: 15%;
+$color-background: #0a192f;
+$color-background-dark: darken($color-background, $shade-amount);
+$color-background-light: lighten($color-background, $shade-amount);
+$color-primary: #ff6d19;
+$color-primary-dark: darken($color-primary, $shade-amount);
+$color-text: #ccd6f6;
+$color-text-secondary: darken($color-text, $shade-amount-high);
+$color-border: darken($color-text-secondary, $shade-amount-high);
+$color-text-on-primary: #FFF; // Used on primary background
+
+// General
+$min-page-vh: 80vh;
+
+/**
+Variable overrides for Bootstrap
+ */
+// General
+$body-color: $color-text;
+$text-muted: $color-text-secondary;
+$primary: $color-primary;
+$danger: lighten(red, $shade-amount-high);
+$body-bg: $color-background;
+
+// Input
+$input-bg: $color-background-light;
+$input-disabled-bg: $color-background-dark;
+$custom-select-disabled-bg: $input-disabled-bg;
+
+$input-border-color: $color-border;
+
+$input-placeholder-color: $color-text-secondary;
+$custom-select-disabled-color: $input-placeholder-color;
+$input-color: $color-text;

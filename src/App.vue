@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// TODO: Cleanup, attributions to undraw, badges page
+// TODO: Cleanup, attributions to undraw, badges page, meta tags and favicon
 import Vue from 'vue';
 import { BootstrapVue } from 'bootstrap-vue';
 
