@@ -1,6 +1,6 @@
 <template>
   <div class="create-page">
-    <SectionWrapper>
+    <PageWrapper>
       <div class="w-100">
         <!--Header with title-->
         <div class="header">
@@ -19,7 +19,7 @@
           :is-submitting="isSubmitting"
         />
       </div>
-    </SectionWrapper>
+    </PageWrapper>
   </div>
 </template>
 
@@ -31,10 +31,10 @@ import {
   SUCCESS_PATH_PAGE_ID_KEY,
   SUCCESS_PATH_PAY_ID_KEY,
 } from '../../constants/routes';
-import SectionWrapper from '../components/SectionWrapper.vue';
+import PageWrapper from '../components/PageWrapper.vue';
 
 export default {
-  components: { SectionWrapper, CreatePageForm },
+  components: { PageWrapper, CreatePageForm },
   data() {
     return {
       isSubmitting: false,
@@ -74,7 +74,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.create-page {
-  min-height: $min-page-vh;
-}
 </style>

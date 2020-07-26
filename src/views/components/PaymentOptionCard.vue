@@ -4,8 +4,34 @@
   :title="title"
   img-top :img-src="currencyIcon"
 >
-  <BCardText>
-    <FormTextInput readonly :value="address" label="Payment Address"/>
+  <!--QR Modal-->
+  <BModal v-model="showQr" centered hide-footer hide-header>
+    <div class="text-center">
+      <PaymentOptionQR
+        :address="address" :currency-code="currencyCode" :requested-value="requestedValue"
+      />
+    </div>
+  </BModal>
+  <!--Main card-->
+  <BCardText class="py-1">
+    <p>Payment Address</p>
+    <BRow align-v="center" class="mt-1" no-gutters>
+      <FormTextInput readonly :value="address" class="mb-0 mr-3 flex-grow-1"/>
+      <!--TODO: copy success message-->
+      <div class="d-inline-flex my-1">
+        <BaseButton
+          outlined size="sm"
+          v-clipboard:copy="address"
+          label="Copy"
+          class="mr-2"
+        />
+        <BaseButton
+          outlined size="sm"
+          label="Show QR"
+          @click="() => { this.showQr = true }"
+        />
+      </div>
+    </BRow>
   </BCardText>
   <template v-slot:footer v-if="showRequestedValue">
     {{ requestedValue }} {{ currencyCode }} requested
@@ -18,8 +44,8 @@ import BTCIcon from '../../assets/currency-icons/btc.png';
 import XRPIcon from '../../assets/currency-icons/xrp.png';
 import { getCurrencyFromCode } from '../../models/Currency';
 import FormTextInput from './form/FormTextInput.vue';
-
-// TODO: QR Code, copy address
+import BaseButton from './BaseButton.vue';
+import PaymentOptionQR from './PaymentOptionQR.vue';
 
 const CURRENCY_TO_ICON = {
   BTC: BTCIcon,
@@ -28,7 +54,12 @@ const CURRENCY_TO_ICON = {
 
 export default {
   name: 'PaymentOptionCard',
-  components: { FormTextInput },
+  components: { PaymentOptionQR, BaseButton, FormTextInput },
+  data() {
+    return {
+      showQr: false,
+    };
+  },
   props: {
     currencyCode: {
       type: String,
@@ -65,5 +96,7 @@ export default {
   // Override bootstrap styling
   max-width: 128px;
   margin: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 </style>

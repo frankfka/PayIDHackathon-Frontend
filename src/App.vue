@@ -7,6 +7,7 @@
 
 <script>
 // TODO: Cleanup, attributions to undraw, badges page, meta tags and favicon
+// TODO: Generalize "section" classes as a wrapper
 import Vue from 'vue';
 import { BootstrapVue } from 'bootstrap-vue';
 import VueClipboard from 'vue-clipboard2';

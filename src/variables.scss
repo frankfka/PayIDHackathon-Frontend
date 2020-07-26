@@ -23,6 +23,7 @@ $text-muted: $color-text-secondary;
 $primary: $color-primary;
 $danger: lighten(red, $shade-amount-high);
 $body-bg: $color-background;
+$border-color: $color-border;
 
 // Input
 $input-bg: $color-background-light;
@@ -34,3 +35,10 @@ $input-border-color: $color-border;
 $input-placeholder-color: $color-text-secondary;
 $custom-select-disabled-color: $input-placeholder-color;
 $input-color: $color-text;
+
+// Cards
+$card-bg: $color-background-dark;
+$card-cap-bg: darken($color-background-dark, $shade-amount);
+
+// Modals
+$modal-content-bg: $color-background;

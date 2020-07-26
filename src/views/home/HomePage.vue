@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <!--Splash Section-->
-    <SectionWrapper class="header">
+    <PageWrapper class="header">
       <BRow no-gutters align-v="center" align-h="between">
         <!--Left text column-->
         <BCol md="8" lg="6">
@@ -17,8 +17,8 @@
           <img src="@/assets/images/home-splash.svg" alt="Header image" class="img-fluid"/>
         </BCol>
       </BRow>
-    </SectionWrapper>
-    <SectionWrapper class="how-it-works align-content-center">
+    </PageWrapper>
+    <PageWrapper class="how-it-works align-content-center">
       <div class="text-center">
         <h2 class="section-title mb-5">How it Works</h2>
         <BRow>
@@ -43,12 +43,12 @@
         </BRow>
         <BaseButton label="Get Started Now" :to="createPath" class="mt-5" outlined/>
       </div>
-    </SectionWrapper>
+    </PageWrapper>
   </div>
 </template>
 
 <script>
-import SectionWrapper from '../components/SectionWrapper.vue';
+import PageWrapper from '../components/PageWrapper.vue';
 import { CREATE_PATH } from '../../constants/routes';
 import BaseButton from '../components/BaseButton.vue';
 
@@ -56,7 +56,7 @@ export default {
   name: 'HomePage',
   components: {
     BaseButton,
-    SectionWrapper,
+    PageWrapper,
   },
   computed: {
     createPath() {

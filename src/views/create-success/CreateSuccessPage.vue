@@ -1,6 +1,6 @@
 <template>
   <div class="create-success-page">
-    <SectionWrapper>
+    <PageWrapper>
       <div class="w-100">
         <!--Header with title-->
         <div class="section">
@@ -62,7 +62,7 @@
           />
         </div>
       </div>
-    </SectionWrapper>
+    </PageWrapper>
   </div>
 </template>
 
@@ -74,13 +74,13 @@ import {
 } from '../../constants/routes';
 import BaseButton from '../components/BaseButton.vue';
 import SocialShareButton, { SUPPORTED_SOCIAL_NETWORKS } from '../components/SocialShareButton.vue';
-import SectionWrapper from '../components/SectionWrapper.vue';
+import PageWrapper from '../components/PageWrapper.vue';
 import FormTextInput from '../components/form/FormTextInput.vue';
 
 export default {
   name: 'CreateSuccessPage',
   components: {
-    FormTextInput, SectionWrapper, SocialShareButton, BaseButton,
+    FormTextInput, PageWrapper, SocialShareButton, BaseButton,
   },
   computed: {
     // Generated ID for new page, passed as a prop

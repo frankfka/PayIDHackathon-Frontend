@@ -1,30 +1,43 @@
 <template>
 <div class="payment-page">
-  <!--Loading animation-->
-  <LoadingView v-if="isLoading" class="loading"/>
-  <!--Error view-->
-  <ErrorView v-if="error" class="error-view"/>
-  <!--Main view-->
-  <div v-if="!isLoading && !error && pageData">
-    <h1>{{ pageTitle }}</h1>
-    <p>{{ customMessage }}</p>
-    <div class="payments-section">
-      <p>Pay with PayID: {{ payId }}</p>
-      <BCardGroup deck v-if="hasPaymentOptions">
-        <PaymentOptionCard
-          class="payment-option-card"
-          v-for="option in paymentOptions"
-          v-bind:key="option.currencyCode"
-          :currency-code="option.currencyCode"
-          :address="option.address"
-          :requested-value="option.value"
-        />
-      </BCardGroup>
-      <div class="no-options-section full-width-centered" v-else>
-        No payment options available for this PayID.
+  <PageWrapper>
+    <div class="w-100">
+      <!--Loading animation-->
+      <LoadingView v-if="isLoading" class="loading"/>
+      <!--Error view-->
+      <ErrorView v-if="error" class="error-view"/>
+      <!--Main view-->
+      <div v-if="!isLoading && !error && pageData">
+        <!--Header section-->
+        <div class="section">
+          <h1>{{ pageTitle }}</h1>
+          <p class="mt-1">{{ customMessage }}</p>
+        </div>
+        <!--Payment Options Section-->
+        <div class="section">
+          <div class="mb-3">
+            <h4>Payment Options</h4>
+            <p>The current associated payment options for PayID: {{ payId }}</p>
+          </div>
+          <!--Show options as cards-->
+          <BCardGroup deck v-if="hasPaymentOptions">
+            <PaymentOptionCard
+              class="payment-option-card"
+              v-for="option in paymentOptions"
+              v-bind:key="option.currencyCode"
+              :currency-code="option.currencyCode"
+              :address="option.address"
+              :requested-value="option.value"
+            />
+          </BCardGroup>
+          <!--No options text-->
+          <div class="no-options-section full-width-centered" v-else>
+            No payment options available for this PayID.
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </PageWrapper>
 </div>
 </template>
 
@@ -34,10 +47,13 @@ import { PAGE_ID_KEY } from '../../constants/routes';
 import LoadingView from '../components/LoadingView.vue';
 import PaymentOptionCard from '../components/PaymentOptionCard.vue';
 import ErrorView from '../components/ErrorView.vue';
+import PageWrapper from '../components/PageWrapper.vue';
 
 export default {
   name: 'PaymentPage',
-  components: { ErrorView, PaymentOptionCard, LoadingView },
+  components: {
+    PageWrapper, ErrorView, PaymentOptionCard, LoadingView,
+  },
   data() {
     return {
       error: false,
@@ -80,8 +96,8 @@ export default {
     console.log(this.pageId);
     getPage(this.pageId)
       .then((fetchedData) => {
-        // this.isLoading = false;
-        // this.error = false;
+        this.isLoading = false;
+        this.error = false;
         this.pageData = fetchedData;
       })
       .catch((error) => {
@@ -96,9 +112,12 @@ export default {
 <style scoped lang="scss">
 .loading, .error-view {
   @extend .full-width-centered;
-  min-height: 80vh;
+}
+.section {
+  margin: ($spacer * 2) auto;
 }
 .payment-option-card {
+  // TODO: Mobile
   max-width: 25vw;
 }
 </style>
