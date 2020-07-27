@@ -10,19 +10,7 @@
         <!--Payment page URL section-->
         <div class="section">
           <h4>Your New Page</h4>
-          <BRow class="mt-3" align-v="center">
-            <FormTextInput
-              class="col mb-0"
-              :value="pageFullUrl"
-              :readonly="true"
-            />
-            <!--TODO: copy success message-->
-            <BaseButton
-              outlined size="sm"
-              v-clipboard:copy="pageFullUrl"
-              label="Copy"
-            />
-          </BRow>
+          <ReadOnlyTextField class="mt-3" :value="pageFullUrl"/>
         </div>
         <!--Badge Section-->
         <div class="section">
@@ -32,13 +20,7 @@
           </div>
           <p class="mt-1">We use <a href="https://shields.io/" target="_blank">shields.io</a>
             to create shareable badges.</p>
-          <!--TODO: copy success message-->
-          <BaseButton
-            class="mt-3"
-            outlined size="sm"
-            v-clipboard:copy="badgeUrl"
-            label="Copy Image URL"
-          />
+          <ReadOnlyTextField class="mt-3" :value="badgeUrl"/>
         </div>
         <!--Social Section-->
         <div class="section">
@@ -75,12 +57,15 @@ import {
 import BaseButton from '../components/BaseButton.vue';
 import SocialShareButton, { SUPPORTED_SOCIAL_NETWORKS } from '../components/SocialShareButton.vue';
 import PageWrapper from '../components/PageWrapper.vue';
-import FormTextInput from '../components/form/FormTextInput.vue';
+import ReadOnlyTextField from '../components/ReadOnlyTextField.vue';
 
 export default {
   name: 'CreateSuccessPage',
   components: {
-    FormTextInput, PageWrapper, SocialShareButton, BaseButton,
+    ReadOnlyTextField,
+    PageWrapper,
+    SocialShareButton,
+    BaseButton,
   },
   computed: {
     // Generated ID for new page, passed as a prop

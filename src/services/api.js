@@ -31,12 +31,17 @@ export async function getPage(id) {
     paymentOptions: [
       {
         currencyCode: 'BTC',
-        address: 'BTCAddress',
+        paymentInfo: {
+          address: 'SomeBTCAddress',
+        },
         value: 20,
       },
       {
         currencyCode: 'XRP',
-        address: 'XRPAddress',
+        paymentInfo: {
+          address: 'SomeXRPAddress',
+          tag: 'SomeXRPTag',
+        },
         value: 454545,
       },
     ],

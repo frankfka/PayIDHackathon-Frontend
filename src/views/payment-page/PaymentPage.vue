@@ -25,9 +25,7 @@
               class="payment-option-card"
               v-for="option in paymentOptions"
               v-bind:key="option.currencyCode"
-              :currency-code="option.currencyCode"
-              :address="option.address"
-              :requested-value="option.value"
+              :payment-option="option"
             />
           </BCardGroup>
           <!--No options text-->
@@ -44,6 +42,7 @@
 <script>
 import { getPage } from '../../services/api';
 import { PAGE_ID_KEY } from '../../constants/routes';
+import { getPaymentPageDataFromResponse } from './PaymentOptionUtils';
 import LoadingView from '../components/LoadingView.vue';
 import PaymentOptionCard from '../components/PaymentOptionCard.vue';
 import ErrorView from '../components/ErrorView.vue';
@@ -93,12 +92,11 @@ export default {
   created() {
     this.isLoading = true;
     // Run fetch on creation
-    console.log(this.pageId);
     getPage(this.pageId)
       .then((fetchedData) => {
         this.isLoading = false;
         this.error = false;
-        this.pageData = fetchedData;
+        this.pageData = getPaymentPageDataFromResponse(fetchedData);
       })
       .catch((error) => {
         console.error(error);
@@ -112,6 +110,9 @@ export default {
 <style scoped lang="scss">
 .loading, .error-view {
   @extend .full-width-centered;
+}
+.no-options-section {
+  height: 40vh;
 }
 .section {
   margin: ($spacer * 2) auto;

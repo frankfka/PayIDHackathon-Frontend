@@ -4,88 +4,79 @@
   :title="title"
   img-top :img-src="currencyIcon"
 >
-  <!--QR Modal-->
-  <BModal v-model="showQr" centered hide-footer hide-header>
-    <div class="text-center">
-      <PaymentOptionQR
-        :address="address" :currency-code="currencyCode" :requested-value="requestedValue"
-      />
-    </div>
-  </BModal>
-  <!--Main card-->
-  <BCardText class="py-1">
-    <p>Payment Address</p>
-    <BRow align-v="center" class="mt-1" no-gutters>
-      <FormTextInput readonly :value="address" class="mb-0 mr-3 flex-grow-1"/>
-      <!--TODO: copy success message-->
-      <div class="d-inline-flex my-1">
-        <BaseButton
-          outlined size="sm"
-          v-clipboard:copy="address"
-          label="Copy"
-          class="mr-2"
-        />
-        <BaseButton
-          outlined size="sm"
-          label="Show QR"
-          @click="() => { this.showQr = true }"
-        />
-      </div>
-    </BRow>
-  </BCardText>
-  <template v-slot:footer v-if="showRequestedValue">
-    {{ requestedValue }} {{ currencyCode }} requested
+  <!--Requested value-->
+  <p v-if="showRequestedValue" class="requested-value-text my-2">
+    {{ requestedValue }} {{ currency.code }} requested
+  </p>
+  <!--Text fields for each payment option info item-->
+  <div>
+    <ReadOnlyTextField
+      class="my-1"
+      v-for="item in paymentOptionInfoItems" :key="item.label + item.value"
+      :label="item.label" :value="item.value"
+    />
+  </div>
+  <template v-slot:footer>
+    <!--Show QR Button-->
+    <PaymentOptionShowQRButton :payment-option="paymentOption"/>
   </template>
 </BCard>
 </template>
 
 <script>
-import BTCIcon from '../../assets/currency-icons/btc.png';
-import XRPIcon from '../../assets/currency-icons/xrp.png';
-import { getCurrencyFromCode } from '../../models/Currency';
-import FormTextInput from './form/FormTextInput.vue';
-import BaseButton from './BaseButton.vue';
-import PaymentOptionQR from './PaymentOptionQR.vue';
+import { getIconFromCurrencyCode } from '../../models/Currency';
+import { validatePaymentOption } from '../payment-page/PaymentOptionUtils';
+import ReadOnlyTextField from './ReadOnlyTextField.vue';
+import PaymentOptionShowQRButton from './PaymentOptionShowQRButton.vue';
 
-const CURRENCY_TO_ICON = {
-  BTC: BTCIcon,
-  XRP: XRPIcon,
-};
+// Format payment info label for display
+function formatPaymentInfoLabel(given) {
+  if (!given) {
+    return '';
+  }
+  // Capitalize first letter
+  return given.charAt(0).toUpperCase() + given.slice(1);
+}
 
 export default {
   name: 'PaymentOptionCard',
-  components: { PaymentOptionQR, BaseButton, FormTextInput },
+  components: {
+    PaymentOptionShowQRButton,
+    ReadOnlyTextField,
+  },
   data() {
     return {
       showQr: false,
     };
   },
   props: {
-    currencyCode: {
-      type: String,
+    paymentOption: {
+      type: Object,
       required: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    requestedValue: {
-      type: Number,
-      default: null,
+      validator: validatePaymentOption,
     },
   },
   computed: {
     currency() {
-      return getCurrencyFromCode(this.currencyCode);
+      return this.paymentOption.currency;
     },
     title() {
       return `${this.currency.name} (${this.currency.code})`;
     },
     currencyIcon() {
-      return CURRENCY_TO_ICON[this.currencyCode];
+      return getIconFromCurrencyCode(this.currency.code);
+    },
+    requestedValue() {
+      return this.paymentOption.value;
     },
     showRequestedValue() {
       return !!this.requestedValue;
+    },
+    paymentOptionInfoItems() {
+      return Object.entries(this.paymentOption.paymentInfo).map((entry) => ({
+        label: formatPaymentInfoLabel(entry[0]),
+        value: entry[1],
+      }));
     },
   },
 };
@@ -98,5 +89,8 @@ export default {
   margin: auto;
   padding-top: 2em;
   padding-bottom: 2em;
+}
+.requested-value-text {
+  color: $color-text-secondary
 }
 </style>
