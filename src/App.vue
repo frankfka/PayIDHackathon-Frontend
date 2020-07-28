@@ -1,6 +1,12 @@
 <template>
   <div id="app">
+    <!--Temp alert for demo mode-->
+    <BAlert show dismissible variant="warning" class="text-center demo-alert">
+      This site is in demo mode. Use with caution.
+    </BAlert>
+    <!--Nav bar-->
     <NavBar/>
+    <!--Main view-->
     <router-view/>
   </div>
 </template>
@@ -30,5 +36,9 @@ export default {
 #app {
   background-color: $color-background;
   min-height: 100vh;
+}
+.demo-alert {
+  border-radius: 0 !important;
+  margin: 0 !important;
 }
 </style>

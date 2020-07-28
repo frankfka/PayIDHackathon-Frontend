@@ -1,7 +1,7 @@
 <template>
 <div class="nav-bar py-2">
   <BNavbar>
-    <BNavbarBrand :to="homePath" class="brand-link">MyPayID</BNavbarBrand>
+    <BNavbarBrand :to="homePath" class="brand-link">xPayments</BNavbarBrand>
     <BNavbarNav class="ml-auto">
       <BaseButton label="Create a Page" :to="createPath" outlined/>
     </BNavbarNav>

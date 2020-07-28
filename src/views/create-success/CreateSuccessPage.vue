@@ -86,7 +86,6 @@ export default {
     },
     // Badge URL
     badgeUrl() {
-      // TODO: more colors
       return `https://img.shields.io/static/v1?label=PayID&message=${encodeURIComponent(this.payIdForPage)}&color=266bcc&labelColor=cd4c04`;
     },
     // All social sharing networks

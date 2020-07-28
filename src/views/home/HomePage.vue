@@ -15,6 +15,11 @@
         <!--Right image column-->
         <BCol md="4" lg="4">
           <img src="@/assets/images/home-splash.svg" alt="Header image" class="img-fluid"/>
+          <div class="text-center mt-2">
+            <small class="text-muted">
+              Illustration by <a href="https://undraw.co/" target="_blank">Undraw</a>.
+            </small>
+          </div>
         </BCol>
       </BRow>
     </PageWrapper>

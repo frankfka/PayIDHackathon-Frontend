@@ -47,16 +47,23 @@ export function validatePaymentOption(option) {
   return option.currency && option.paymentInfo;
 }
 
-// Create QR code value
+// Create QR code value - ignores the amount for now
 export function getQrValue(paymentOption) {
-  // TODO
   const { currency } = paymentOption;
+  let qrValue = '';
+  // Get base URI based on the currency
   if (Object.is(currency, CURRENCY.BTC)) {
-    console.log('btc');
+    qrValue = `bitcoin:${paymentOption.paymentInfo.address}`;
   } else if (Object.is(currency, CURRENCY.ETH)) {
-    console.log('eth');
+    qrValue = `ethereum:${paymentOption.paymentInfo.address}`;
   } else if (Object.is(currency, CURRENCY.XRP)) {
-    console.log('xrp');
+    qrValue = `xrp:${paymentOption.paymentInfo.address}`;
+    // Add the tag if required
+    if (paymentOption.paymentInfo.tag) {
+      qrValue += `?tag=${paymentOption.paymentInfo.tag}`;
+    }
+  } else {
+    return null; // Not supported
   }
-  return 'value';
+  return qrValue;
 }

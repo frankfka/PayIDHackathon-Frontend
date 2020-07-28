@@ -26,6 +26,10 @@ const routes = [
     name: RouteConstants.PAGE_PATH_NAME,
     component: () => import('@/views/payment-page/PaymentPage.vue'), // Allows lazy loading
   },
+  {
+    path: '*',
+    component: () => import('@/views/page-not-found/PageNotFoundPage.vue'), // Allows lazy loading
+  },
 ];
 
 const router = new VueRouter({

@@ -18,7 +18,7 @@ export async function createPage(pageData) {
   return 'TestID3231212';
   // eslint-disable-next-line no-unreachable
   const res = await axios.post(endpoints.CREATE_ENDPOINT, requestInfo);
-  return res.data.id;
+  return res.data; // The data is just the ID object
 }
 
 export async function getPage(id) {
@@ -47,11 +47,8 @@ export async function getPage(id) {
     ],
   };
   // eslint-disable-next-line no-unreachable
-  const requestInfo = {
-    id,
-  };
-  const res = await axios.get(endpoints.GET_ENDPOINT, {
-    params: requestInfo,
-  });
+  const requestEndpoint = `${endpoints.GET_ENDPOINT}/${id}`;
+  const res = await axios.get(requestEndpoint);
+  console.log(res.data);
   return res.data;
 }

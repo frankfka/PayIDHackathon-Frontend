@@ -1,6 +1,5 @@
 <template>
 <div class="error-view full-width-centered">
-<!--TODO: Image https://undraw.co/search-->
   {{ message }}
 </div>
 </template>
