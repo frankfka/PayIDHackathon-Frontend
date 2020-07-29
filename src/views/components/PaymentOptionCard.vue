@@ -67,7 +67,8 @@ export default {
       return getIconFromCurrencyCode(this.currency.code);
     },
     requestedValue() {
-      return this.paymentOption.value;
+      // Round to 5 decimal places
+      return this.paymentOption.value.toFixed(5);
     },
     showRequestedValue() {
       return !!this.requestedValue;

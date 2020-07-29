@@ -1,7 +1,6 @@
 import BTCIcon from '../assets/currency-icons/btc.png';
 import XRPIcon from '../assets/currency-icons/xrp.png';
 import ETHIcon from '../assets/currency-icons/eth.png';
-import USDACHIcon from '../assets/currency-icons/ach.png';
 
 // Supported currencies
 const BTC = {
@@ -17,20 +16,19 @@ const ETH = {
   code: 'ETH',
 };
 // TODO: Figure this out
-const USD_ACH = {
-  name: 'USD',
-  code: 'ACH',
-};
+// const USD_ACH = {
+//   name: 'USD',
+//   code: 'ACH',
+// };
 
 // Currency "Enum"
 export const CURRENCY = {
-  BTC, XRP, ETH, USD_ACH,
+  BTC, XRP, ETH,
 };
 const CURRENCY_CODE_TO_ICON = {
   BTC: BTCIcon,
   XRP: XRPIcon,
   ETH: ETHIcon,
-  USD_ACH: USDACHIcon,
 };
 export function getIconFromCurrencyCode(code) {
   return CURRENCY_CODE_TO_ICON[code];

@@ -44,15 +44,12 @@ export default {
   methods: {
     onFormSubmit(data) {
       if (this.isSubmitting) {
-        console.log('Currently submitting, not resubmitting');
         return;
       }
-      console.log('Submitting form');
       this.isSubmitting = true;
       createPage(data)
         .then((newPageId) => {
           // Push to success page if creation is successful
-          console.log(newPageId);
           this.isSubmitting = false;
           const routerParams = {};
           routerParams[SUCCESS_PATH_PAGE_ID_KEY] = newPageId;
