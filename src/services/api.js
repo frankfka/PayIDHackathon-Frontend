@@ -11,7 +11,6 @@ export async function createPage(pageData) {
       currencyCode: pageData.requestedAmountCurrency.code,
     } : null,
   };
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   const res = await axios.post(endpoints.CREATE_ENDPOINT, requestInfo);
   return res.data; // The data is just the ID object
 }

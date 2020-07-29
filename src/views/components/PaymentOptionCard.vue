@@ -68,7 +68,7 @@ export default {
     },
     requestedValue() {
       // Round to 5 decimal places
-      return this.paymentOption.value.toFixed(5);
+      return this.paymentOption.value?.toFixed(5);
     },
     showRequestedValue() {
       return !!this.requestedValue;
