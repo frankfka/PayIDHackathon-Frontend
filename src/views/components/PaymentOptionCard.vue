@@ -86,10 +86,12 @@ export default {
 <style scoped lang="scss">
 .card-img-top {
   // Override bootstrap styling
-  max-width: 128px;
+  max-height: 256px;
   margin: auto;
   padding-top: 2em;
   padding-bottom: 2em;
+  width: auto;
+  height: auto;
 }
 .requested-value-text {
   color: $color-text-secondary
